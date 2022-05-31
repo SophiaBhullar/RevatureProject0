@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction</title>
+</head>
+<body>
+    <h1>
+        <h2> Welcome back {{username}}</h2><br>
+        Choose the type of transaction: 
+    </h1><br><br>
+        
+        <label for="balance">Balance</label>
+        <input type="text" id="balance" name="balance" value="{{balance}}"><br><br>
+        <label for="transaction">Withdraw</label>
+        <input type="radio" id="withdraw" name="transaction" value="withdraw">
+        <label for="transaction">Deposit</label>
+        <input type="radio" id="deposit" name="transaction" value="deposit"><br><br>
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount"><br>
+
+        <button type="Submit" name="btn" value="Confirm" onclick="checkButton()">Confirm</button><br>
+        <p id="result"></p>
+    <script>
+    function checkButton()
+    {
+     if(document.getElementById('withdraw').checked)
+     {
+        var x = document.getElementById("amount").value;
+        var y = document.getElementById("balance").value;
+        var z = y - x;
+        alert("Updated Balance is " + z);
+     } 
+     else if (document.getElementById('deposit').checked)
+     {
+        var x = document.getElementById("amount").value;
+        var y = document.getElementById("balance").value;
+        var z = Number(x) + Number(y);
+        alert("Updated Balance is " + z);
+     }
+    }
+    </script>
+</body>
+</html>

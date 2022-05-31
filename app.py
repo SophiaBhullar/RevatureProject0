@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template,request
 from controller.registration_controller import get_registration_page, register_user
 from repository.login_dao import insert_user, select_user
 from models.login_dto import Login
@@ -9,7 +9,6 @@ from controller.login_controller import *
 # run flask here
 
 app = Flask(__name__)
-app.secret_key= "banking"
 
 @app.route('/', methods=["GET"])
 def login_page():
@@ -30,6 +29,9 @@ def registration_page():
 def register_new_user():
     return register_user(request.form)
 
+@app.route('/transaction')
+def transaction_page():
+    return get_transaction_page()
 
 
 

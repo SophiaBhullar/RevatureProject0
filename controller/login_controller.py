@@ -7,14 +7,19 @@ def get_login_page():
 
 
 def check_cust_login(login_input):
+    #user_login = check_login(login_input)
+    global user_login
     user_login = check_login(login_input)
-
     if user_login is None:
         return "Failed Login"
     else:
-        session['cust_id'] = user_login.cust_id
+        global details
         details = select_by_user(user_login.cust_id)
         return render_template("details.html", username=user_login.cust_name,acc_num=details.acc_num, first_name=details.first_name, last_name=details.last_name,acc_type=details.acc_type,balance=details.balance)
 
+
+def get_transaction_page():
+    transaction=select_by_user(user_login.cust_id)
+    return render_template("transaction.html",username=user_login.cust_name,acc_num=details.acc_num, first_name=details.first_name, last_name=details.last_name,acc_type=details.acc_type,balance=details.balance)
 
     

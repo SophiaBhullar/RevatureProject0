@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        table,th,td{
+            border: 1px solid black;
+        }
+
+        button{
+            text-align: center;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +20,8 @@
         <br>
     <h2> Welcome back {{username}}</h2>
     <br>
-    <table>
+
+    <table style="width:100%">
         <tr>
             <th>Account Number</th>
             <th>Fisrt Name</th>
@@ -26,43 +36,11 @@
             <td>{{acc_type}}</td>
             <td>{{balance}}</td>
         </tr>
-    </table>
-        <label for="transaction">Withdraw</label>
-        <input type="radio" id="withdraw" name="transaction" value="Withdraw">
-        <label for="transaction">Deposit</label>
-        <input type="radio" id="deposit" name="transaction" value="Deposit"><br>
-        <label for="amount">Amount</label>
-        <input type="text" id="amount" name="amount"><br>
-
-        <button type="Submit" id="btn">Confirm</button><br>
-
-        <p id="output"></p>
-
-
-        <script>
-            const btn = document.querySelector('#btn');        
-            const radioButtons = document.querySelectorAll('input[name="transaction"]');
-            btn.addEventListener("click", () => {
-                let transaction_type;
-                for (const radioButton of radioButtons) {
-                    if (radioButton.checked) {
-                        transaction_type = radioButton.value;
-                        break;
-                    }
-                }
-
-                if(transaction_type.value == 'withdraw')
-                {
-                    output.innerText='Withdraw';
-                }
-                if(transaction_type.value == 'deposit')
-                {
-                    output.innerText='Deposit';
-                }
-             
-                
-            });
-        </script>
-
+    </table><br><br>
+    <a href="http://127.0.0.1:5000/transaction">
+        <div>
+                <button>Transaction</button>
+        </div>
+    </a>
 </body>
 </html>
