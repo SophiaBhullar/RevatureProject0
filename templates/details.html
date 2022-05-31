@@ -7,6 +7,62 @@
     <title>Customer Details</title>
 </head>
 <body>
-    <h2>Logged In Successfully!</h2>
+    <h1>Logged In Successfully!</h1>
+        <br>
+    <h2> Welcome back {{username}}</h2>
+    <br>
+    <table>
+        <tr>
+            <th>Account Number</th>
+            <th>Fisrt Name</th>
+            <th>Last Name</th>
+            <th>Account Type</th>
+            <th>Balance</th>
+        </tr>
+        <tr>
+            <td>{{acc_num}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{acc_type}}</td>
+            <td>{{balance}}</td>
+        </tr>
+    </table>
+        <label for="transaction">Withdraw</label>
+        <input type="radio" id="withdraw" name="transaction" value="Withdraw">
+        <label for="transaction">Deposit</label>
+        <input type="radio" id="deposit" name="transaction" value="Deposit"><br>
+        <label for="amount">Amount</label>
+        <input type="text" id="amount" name="amount"><br>
+
+        <button type="Submit" id="btn">Confirm</button><br>
+
+        <p id="output"></p>
+
+
+        <script>
+            const btn = document.querySelector('#btn');        
+            const radioButtons = document.querySelectorAll('input[name="transaction"]');
+            btn.addEventListener("click", () => {
+                let transaction_type;
+                for (const radioButton of radioButtons) {
+                    if (radioButton.checked) {
+                        transaction_type = radioButton.value;
+                        break;
+                    }
+                }
+
+                if(transaction_type.value == 'withdraw')
+                {
+                    output.innerText='Withdraw';
+                }
+                if(transaction_type.value == 'deposit')
+                {
+                    output.innerText='Deposit';
+                }
+             
+                
+            });
+        </script>
+
 </body>
 </html>

@@ -1,33 +1,37 @@
 
 from flask import Flask, render_template, request
-from database.login_dao import insert_user, select_user
+from controller.registration_controller import get_registration_page, register_user
+from repository.login_dao import insert_user, select_user
 from models.login_dto import Login
+from controller.home_controller import *
+from controller.login_controller import *
 
 # run flask here
 
 app = Flask(__name__)
-    
+app.secret_key= "banking"
 
 @app.route('/', methods=["GET"])
-def landing_page():
-    return render_template("index.html")
-
-@app.route('/login', methods=["GET"])
 def login_page():
-    return render_template("login.html")
+    return get_login_page()
 
 
 @app.route('/login/input', methods=["POST"])
-def validate_login():
-    login_input = request.form
-    print(login_input)
-    user_dto = select_user(login_input.get("cust_name"), login_input.get("cust_pass"))
-    if user_dto is None:
-        print(user_dto)
-        return "Failed login"
-    else:
-        return render_template("details.html")
+def cust_login():
+    return check_cust_login(request.form)
+    
  
+@app.route('/registration')
+def registration_page():
+    return get_registration_page()
+
+
+@app.route('/registration/register', methods=["POST"])
+def register_new_user():
+    return register_user(request.form)
+
+
+
 
 #print(insert_user("test_user_4", "pass_2"))
     #user_login= select_user(6)
