@@ -1,18 +1,14 @@
 # for successful registration: need valid username and password, first name, last name and other information
 #to validate, we are checking length of input from user
-
-import imp
-from select import select
 from models.cust_info_dto import Customer
 from models.login_dto import Login
 from repository.login_dao import insert_user, select_user_by_id
 from repository.cust_info__dao import insert_user_info
+from service.validation_service import validate_login, validate_info
 
-def validate_registration(input):
-    login_dto = Login(0, input.get("cust_name"), input.get("cust_pass"))
-    cust_info_dto = Customer(0,0,input.get("first_name"), input.get("last_name"), input.get("acc_type"), input.get("balance"))
 
-    return login_dto.validate_login() and cust_info_dto.validate_user_info()
+def validate_registration(input_dict):
+    return validate_login((input_dict["cust_name"], input_dict["cust_pass"])) and validate_info((input_dict["first_name"], input_dict["last_name"],input_dict["acc_type"],input_dict["balance"]))
        
 
 def create_login(input):

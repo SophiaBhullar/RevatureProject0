@@ -8,7 +8,17 @@ def get_registration_page():
 
 def register_user(register_input):
     #validate input
-    if validate_registration(register_input):
+    input_dict={
+        "cust_name":register_input["cust_name"],
+        "cust_pass":register_input["cust_pass"],
+        "first_name":register_input["first_name"],
+        "last_name":register_input["last_name"],
+        "acc_type":register_input["acc_type"],
+        "balance":register_input["balance"],
+
+    }
+
+    if validate_registration(input_dict):
 
         #create new user
         cust_id = create_login(register_input)
